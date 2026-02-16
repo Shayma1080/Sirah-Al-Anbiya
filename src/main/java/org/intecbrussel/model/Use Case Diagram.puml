@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor User
+actor Admin
+
+rectangle "Sirah Al-Anbiya System" {
+
+    (Register account) as Register
+    (Login) as Login
+
+    (View prophets timeline) as ViewProphets
+    (Select prophet) as SelectProphet
+    (View story phases) as ViewStory
+
+    (Play quiz) as PlayQuiz
+    (Submit answer) as SubmitAnswer
+    (Receive feedback) as Feedback
+
+    (View progress) as ViewProgress
+
+    (Manage prophets) as ManageProphets
+    (Manage story phases) as ManageStory
+    (Manage quiz questions) as ManageQuiz
+    (Manage media) as ManageMedia
+}
+
+User --> Register
+User --> Login
+User --> ViewProphets
+User --> SelectProphet
+User --> ViewStory
+User --> PlayQuiz
+User --> SubmitAnswer
+User --> Feedback
+User --> ViewProgress
+
+Admin --> Login
+Admin --> ManageProphets
+Admin --> ManageStory
+Admin --> ManageQuiz
+Admin --> ManageMedia
+
+SubmitAnswer --> Feedback : <<include>>
+
+@enduml
