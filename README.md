@@ -7,7 +7,7 @@ Interactive educational web application for learning the history of the prophets
 ## System Design
 
 ### Use Case Diagram
-![Use Case](diagrams/usecase.png)
+![Use Case](diagrams/usecase.puml)
 
 ### Class Diagram
 ![Class Diagram](diagrams/class-diagram.png)
