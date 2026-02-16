@@ -10,10 +10,10 @@ Interactive educational web application for learning the history of the prophets
 ![Use Case](diagrams/usecase.puml)
 
 ### Class Diagram
-![Class Diagram](diagrams/class-diagram.png)
+![Class Diagram](diagrams/class-diagram.puml)
 
 ### Sequence Diagram
-![Sequence Diagram](diagrams/sequence-diagram.png)
+![Sequence Diagram](diagrams/sequence-diagram.puml)
 
 ### Flowchart
-![Flowchart](diagrams/flowchart.png)
+![Flowchart](diagrams/flowchart.puml)
