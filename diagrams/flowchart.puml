@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+start
+
+:User selects answer;
+:Send answer to backend;
+
+:Retrieve correctAnswer from QuizQuestion;
+
+if (userAnswer == correctAnswer?) then (yes)
+  :Mark QuizAttempt as correct;
+else (no)
+  :Mark QuizAttempt as incorrect;
+endif
+
+:Save QuizAttempt to Database;
+:Return feedback to Frontend;
+:Show feedback to User;
+
+stop
+@enduml

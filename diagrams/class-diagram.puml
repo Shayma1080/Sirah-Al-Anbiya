@@ -1,0 +1,72 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+' ======================
+' ENTITIES
+' ======================
+
+class User {
+    -Long id
+    -String username
+    -String email
+    -String password
+}
+
+class Prophet {
+    -Long id
+    -String name
+    -String period
+    -String description
+}
+
+class StoryPhase {
+    -Long id
+    -String title
+    -int orderNumber
+    -Prophet prophet
+}
+
+class Media {
+    -Long id
+    -String type
+    -String url
+    -StroyPhase storyPhase
+
+}
+
+class QuizQuestion {
+    -Long id
+    -String question
+    -List<String> optionsAnswer
+    -String correctAnswer
+    -StroyPhase storyPhase
+}
+
+class QuizAttempt {
+    -Long id
+    -String userAnswer
+    -boolean correct
+    -User user
+    -QuizQuestion quizQuestion
+}
+
+class UserProgress {
+    -Long id
+    -User user
+    -Prophet prophet
+    -int progressPercentage
+}
+
+' ======================
+' RELATIONSHIPS
+' ======================
+
+StoryPhase --> Prophet
+Media --> StoryPhase
+QuizQuestion --> StoryPhase
+QuizAttempt --> User
+QuizAttempt --> QuizQuestion
+UserProgress --> User
+UserProgress --> Prophet
+
+@enduml

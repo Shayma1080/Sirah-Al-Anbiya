@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User
+participant Frontend
+participant QuizController
+participant QuizService
+participant QuizRepository
+database Databasse
+
+== User starts quiz ==
+User -> Frontend : select question and answer
+Frontend -> QuizController : POST /quiz-attempt {userAnswer, questionId, userId}
+
+== Backend validation ==
+QuizController -> QuizService : validateAnswer(userAnswer, questionId, userId)
+QuizService -> QuizRepository : save QuizAttempt
+QuizRepository -> Database : insert QuizAttempt record
+QuizService -> QuizController : return correct / incorrect
+
+== Frontend feedback ==
+QuizController -> Frontend : return result
+Frontend -> User : show correct / incorrect feedback
+
+@enduml
