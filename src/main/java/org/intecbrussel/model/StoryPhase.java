@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class StroyPhase {
+public class StoryPhase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

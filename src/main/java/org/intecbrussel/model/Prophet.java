@@ -24,7 +24,7 @@ public class Prophet {
     // 1 prophet kan in meerdere story phases hebben
 
     @OneToMany(mappedBy = "prophet", cascade = CascadeType.ALL)
-    private List<StroyPhase> stroyPhases;
+    private List<StoryPhase> stroyPhases;
 
     // 1 prophet kan in meerde UserProgress entries voorkomen
     @OneToMany(mappedBy = "prophet", cascade = CascadeType.ALL)

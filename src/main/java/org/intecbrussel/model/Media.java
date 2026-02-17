@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Getter
 @Setter
@@ -19,5 +20,5 @@ public class Media {
     private String url;
     @ManyToOne
     @JoinColumn(name= "story_phase_id")
-    private StroyPhase storyPhase;
+    private StoryPhase storyPhase;
 }

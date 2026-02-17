@@ -27,7 +27,7 @@ public class QuizQuestion {
 
     @ManyToOne
     @JoinColumn(name = "story_phase_id")
-    private StroyPhase storyPhase;
+    private StoryPhase storyPhase;
 
     // 1 vraag kan meerde attemps hebben
     @OneToMany(mappedBy ="quizQuestion",cascade = CascadeType.ALL)
