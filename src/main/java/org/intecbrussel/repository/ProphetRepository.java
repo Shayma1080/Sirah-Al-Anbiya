@@ -1,13 +1,11 @@
 package org.intecbrussel.repository;
 
+import org.intecbrussel.model.Prophet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface Media extends JpaRepository<Media,Long> {
+public interface ProphetRepository extends JpaRepository<Prophet,Long> {
 
 
-    List<Media> findByStoryPhaseId(Long storyPhaseId);
 }

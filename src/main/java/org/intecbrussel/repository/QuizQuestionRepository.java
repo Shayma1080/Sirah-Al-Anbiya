@@ -1,12 +1,13 @@
 package org.intecbrussel.repository;
 
+import org.intecbrussel.model.QuizQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface QuizAttempt extends JpaRepository<QuizAttempt,Long> {
+public interface QuizQuestionRepository extends JpaRepository<QuizQuestion,Long> {
 
-    List<QuizAttempt> findByUserId(Long userId);
+    List<QuizQuestion> findByStoryPhaseId(Long storyPhaseId);
 }
