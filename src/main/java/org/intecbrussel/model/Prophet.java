@@ -18,7 +18,7 @@ public class Prophet {
     private Long id;
     private String name;
     private String period;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String description;
 
     // 1 prophet kan in meerdere story phases hebben

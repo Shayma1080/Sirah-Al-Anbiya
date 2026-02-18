@@ -1,6 +1,5 @@
 package org.intecbrussel.repository;
 
-import org.hibernate.boot.models.JpaAnnotations;
 import org.intecbrussel.model.StoryPhase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
