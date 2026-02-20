@@ -1,6 +1,7 @@
 package org.intecbrussel.controller;
 
 import org.intecbrussel.dto.LoginRequest;
+import org.intecbrussel.dto.RegisterRequest;
 import org.intecbrussel.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.intecbrussel.model.User;
@@ -17,11 +18,8 @@ public class AuthController {
     private final LoginService loginService;
 
     @PostMapping("/register")
-    public User register(@RequestParam String username,
-                         @RequestParam String email,
-                         @RequestParam String password) {
-        // geeft nog steeds het hele User object terug
-        return authService.register(username, email, password);
+    public User register(@RequestBody RegisterRequest request) {
+        return authService.register(request.getUsername(), request.getEmail(), request.getPassword());
     }
 
     @PostMapping("/login")

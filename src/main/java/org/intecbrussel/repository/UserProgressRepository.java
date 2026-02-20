@@ -1,5 +1,7 @@
 package org.intecbrussel.repository;
 
+import org.intecbrussel.model.Prophet;
+import org.intecbrussel.model.User;
 import org.intecbrussel.model.UserProgress;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,4 +12,6 @@ import java.util.Optional;
 public interface UserProgressRepository extends JpaRepository<UserProgress,Long> {
 
     Optional<UserProgress> findByUserIdAndProphetId(Long userId, Long prophetId);
+
+    Optional<UserProgress> findByUserAndProphet(User user, Prophet prophet);
 }

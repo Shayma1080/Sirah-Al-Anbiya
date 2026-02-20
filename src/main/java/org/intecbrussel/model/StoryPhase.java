@@ -1,11 +1,13 @@
 package org.intecbrussel.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
@@ -25,8 +27,8 @@ public class StoryPhase {
     private Prophet prophet;
 
     // StroyPhase ken meerde Media entries hebben
-    @OneToMany(mappedBy = "storyPhase",cascade = CascadeType.ALL)
-    private List<Media> medialist;
+    @OneToMany(mappedBy = "storyPhase",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Media> medialist= new ArrayList<>();
 
     // StoryPhase kan meerdere quizvragen hebben
     @OneToMany(mappedBy = "storyPhase", cascade = CascadeType.ALL)

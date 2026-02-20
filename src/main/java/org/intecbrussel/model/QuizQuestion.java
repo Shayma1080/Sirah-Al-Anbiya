@@ -20,7 +20,7 @@ public class QuizQuestion {
     @Column(length = 1000)
     private String question;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> optionsAnswer; // antwoord kiezen
 
     private String correctAnswer; // 1 juiste antwoord

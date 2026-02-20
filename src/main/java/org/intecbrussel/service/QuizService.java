@@ -33,18 +33,20 @@ public class QuizService {
         return quizQuestionRepository.findByStoryPhaseId(storyPhaseId);
     }
 
-    public QuizAttempt submitAnswer (Long userId, Long questionId, String userAnswer){
+    public QuizAttempt submitAnswer(Long userId, Long questionId, String userAnswer){
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id " + userId));
 
-        User user = userRepository.findById(userId).orElseThrow();
-        QuizQuestion question = quizQuestionRepository.findById(questionId).orElseThrow();
+        QuizQuestion question = quizQuestionRepository.findById(questionId)
+                .orElseThrow(() -> new IllegalArgumentException("Question not found with id " + questionId));
 
-        boolean IsCorrect = question.getCorrectAnswer().equals(userAnswer);
+        boolean isCorrect = question.getCorrectAnswer().equals(userAnswer);
 
         QuizAttempt attempt = new QuizAttempt();
         attempt.setUser(user);
         attempt.setQuizQuestion(question);
         attempt.setUserAnswer(userAnswer);
-        attempt.setCorrect(IsCorrect);
+        attempt.setCorrect(isCorrect);
 
         return quizAttemptRepository.save(attempt);
     }

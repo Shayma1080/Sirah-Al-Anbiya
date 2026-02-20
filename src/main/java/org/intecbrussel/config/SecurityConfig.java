@@ -23,6 +23,12 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // voor API's
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // register/login open
+
+                        .requestMatchers("/api/prophets/**").permitAll()
+                        .requestMatchers("/api/storyphases/**").permitAll()
+                        .requestMatchers("/api/quiz/**").permitAll()
+                        .requestMatchers("/api/progress/**").permitAll()
+
                         .anyRequest().authenticated()                // alle andere endpoints beveiligd
                 )
                 .sessionManagement(session -> session

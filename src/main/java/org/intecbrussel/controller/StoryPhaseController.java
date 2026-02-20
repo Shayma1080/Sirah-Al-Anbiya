@@ -1,6 +1,10 @@
 package org.intecbrussel.controller;
 
+import org.intecbrussel.dto.StoryPhaseDTO;
+import org.intecbrussel.model.Prophet;
 import org.intecbrussel.model.StoryPhase;
+import org.intecbrussel.repository.ProphetRepository;
+import org.intecbrussel.service.ProphetService;
 import org.intecbrussel.service.StoryPhaseService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,13 +18,27 @@ import java.util.List;
 public class StoryPhaseController {
 
     public final StoryPhaseService storyPhaseService;
+    public final ProphetRepository prophetRepository;
 
-    public  StoryPhaseController(StoryPhaseService storyPhaseService) {
+    public  StoryPhaseController(StoryPhaseService storyPhaseService, ProphetRepository prophetRepository) {
         this.storyPhaseService = storyPhaseService;
+        this.prophetRepository = prophetRepository;
     }
 
     @GetMapping("/prophet/{prophetId}")
-    public List<StoryPhase> getPhasesByProphet(@PathVariable Long prophetId) {
-        return storyPhaseService.getPhaseByProphet(prophetId);
+    public List<StoryPhaseDTO> getPhasesByProphets(@PathVariable Long prophetId) {
+        Prophet prophet = prophetRepository.findById(prophetId)
+                .orElseThrow(() -> new RuntimeException("Profeet niet gevonden"));
+
+        return prophet.getStoryPhases().stream()
+                .map(sp -> {
+                    StoryPhaseDTO dto = new StoryPhaseDTO();
+                    dto.setId(sp.getId());
+                    dto.setTitle(sp.getTitle());
+                    dto.setOrderNumber(sp.getOrderNumber());
+                    // geen medias of quizQuestions vullen
+                    return dto;
+                })
+                .toList();
     }
 }

@@ -1,5 +1,6 @@
 package org.intecbrussel.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +24,8 @@ public class Prophet {
 
     // 1 prophet kan in meerdere story phases hebben
 
-    @OneToMany(mappedBy = "prophet", cascade = CascadeType.ALL)
-    private List<StoryPhase> stroyPhases;
+    @OneToMany(mappedBy = "prophet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<StoryPhase> storyPhases;
 
     // 1 prophet kan in meerde UserProgress entries voorkomen
     @OneToMany(mappedBy = "prophet", cascade = CascadeType.ALL)
