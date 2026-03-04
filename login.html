@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div class="auth-container">
+    <h1>Login</h1>
+
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Gebruikersnaam" required>
+        <input type="password" id="password" placeholder="Wachtwoord" required>
+        <button type="submit">Inloggen</button>
+    </form>
+
+    <p>Nog geen account? <a href="register.html">Registreer hier</a></p>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        const response = await fetch("http://localhost:8080/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem("token", data.token); // JWT opslaan
+            alert("Login succesvol!");
+            window.location.href = "index.html";
+        } else {
+            const errorMsg = await response.text();
+            alert("Login mislukt: " + errorMsg);
+        }
+    } catch (error) {
+        alert("Server fout: " + error);
+    }
+});
+</script>
+    
+</body>
+</html>

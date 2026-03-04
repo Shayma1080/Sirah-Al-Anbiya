@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div class="auth-container">
+    <h1>Account Aanmaken</h1>
+
+    <form id="registerForm">
+        <input type="text" id="username" placeholder="Gebruikersnaam" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Wachtwoord" required>
+        <button type="submit">Registreren</button>
+    </form>
+
+    <p>Heb je al een account? <a href="login.html">Login hier</a></p>
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const userData = {
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+    };
+
+    try {
+        const response = await fetch("http://localhost:8080/api/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (response.ok) {
+            alert("Registratie succesvol!");
+            window.location.href = "login.html";
+        } else {
+            alert("Registratie mislukt.");
+        }
+    } catch (error) {
+        alert("Server fout.");
+    }
+});
+</script>
+    
+</body>
+</html>

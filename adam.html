@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profeet Adam</title>
+    <link rel="stylesheet" href="css/design.css">
+</head>
+<body>
+    <button class="backButton" onclick="location.href='index.html'">Terug naar start</button>
+
+<div class="container">
+
+    <h1>Prophet Adam (AS)</h1>
+
+    <h2>Story Phase 1 – Het begin</h2>
+
+    <p>
+        Adam (AS) werd geschapen door Allah als de eerste mens en profeet...
+    </p>
+
+    <!-- IMAGE -->
+    <div id="imageSection">
+    <img src="image/adam.jpg" width="40%" />
+    <br><br>
+    <button onclick="showAudio()">Ga Verder</button>
+    </div>
+
+    <!-- AUDIO -->
+     <div id="audioSection" style="display:none;">
+    <audio controls>
+        <source src="audio/Coran Arabe sourate 7.mp3" type="audio/mpeg">
+    </audio>
+    <br><br>
+        <button onclick="showVideo()">Ga Verder</button>
+    </div>
+
+    <!-- VIDEO -->
+    <div id="videoSection" style="display:none;">
+    <iframe width="100%" height="315"
+        src="https://www.youtube.com/embed/05p8KzZixb4"
+        frameborder="0"
+        allowfullscreen>
+    </iframe>
+    <br><br>
+        <button onclick="showQuiz()">Start Quiz</button>
+    </div>
+
+    <!-- QUIZ -->
+<div id="quizSection" style="display:none;">
+    <h3>Quiz</h3>
+    <div id="quizContainer"></div>
+</div>
+
+<div id="progressWrapper" style="width: 100%; background: #eee; margin-top: 10px;">
+    <div id="progressBar" style="width: 0%; height: 20px; background: #d6cfc1;"></div>
+</div>
+
+
+</div>
+<script src="js/adam.js"></script>
+    
+</body>
+</html>

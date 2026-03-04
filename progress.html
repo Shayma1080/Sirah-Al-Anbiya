@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mijn Progress</title>
+    <link rel="stylesheet" href="css/progress.css">
+</head>
+<body>
+    <button class="backButton" onclick="location.href='index.html'">Terug naar start</button>
+<div class="container">
+    <h1>Mijn Progress</h1>
+
+    <div id="progressList">
+        <!-- Dynamisch gegenereerde cirkels per profeet komen hier -->
+    </div>
+
+    <div id="totalProgress">
+        <h3>Totaal Score</h3>
+        <div class="total-bar-wrapper">
+            <div id="totalProgressBar" class="total-bar"></div>
+        </div>
+        <p id="totalProgressValue">0%</p>
+    </div>
+
+</div>
+
+<script>
+async function loadProgress() {
+    const prophetIds = [
+        {id: 1, name: "Adam"},
+        {id: 2, name: "Noeh"},
+        {id: 3, name: "Musa"},
+        {id: 4, name: ""},
+        {id: 5, name: ""},
+        {id: 6, name: ""},
+        {id: 7, name: ""},
+        {id: 8, name: ""},
+        {id: 9, name: ""},
+        {id: 10, name: ""}
+    ];
+
+    let total = 0;
+    let count = 0;
+
+    const container = document.getElementById("progressList");
+    container.innerHTML = "";
+
+    for (const prophet of prophetIds) {
+        // Fetch per profeet progress
+        let progressPercentage = 0;
+        if (prophet.name !== "") {
+            try {
+                const response = await fetch(`http://localhost:8080/api/progress?userId=1&prophetId=${prophet.id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    progressPercentage = data.progressPercentage || 0;
+                }
+            } catch(e) {
+                console.error(`Error fetching progress for ${prophet.name}`, e);
+            }
+            total += progressPercentage;
+            count++;
+        }
+
+        // Maak cirkel per profeet
+        const profDiv = document.createElement("div");
+        profDiv.classList.add("prophet-progress");
+
+        const circle = document.createElement("div");
+        circle.classList.add("circle");
+        circle.textContent = prophet.name || "?";
+
+        const scoreText = document.createElement("p");
+        scoreText.textContent = `${progressPercentage}%`;
+
+        profDiv.appendChild(circle);
+        profDiv.appendChild(scoreText);
+        container.appendChild(profDiv);
+    }
+
+    // Totaal berekenen
+    const average = count > 0 ? Math.round(total / count) : 0;
+    document.getElementById("totalProgressBar").style.width = average + "%";
+    document.getElementById("totalProgressValue").textContent = average + "%";
+}
+
+// Start bij laden
+loadProgress();
+</script> 
+<script src="js/dashboard.js"></script>  
+</body>
+</html>

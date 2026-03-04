@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tijdlijn van Profeten</title>
+    <link rel="stylesheet" href="css/timeline.css">
+</head>
+
+<body>
+
+    <div class="top-right-buttons">
+    <button id="logoutBtn">Deconnecter</button>
+    <button id="totalProgressBtn" onclick="location.href='progress.html'">Bekijk Totale Score</button>
+</div>
+<p id="totalProgressResult"></p>
+
+    <!-- IMAGE -->
+    <div id="imageSection">
+    <img src="image/index.jpg" width="100%" />
+    </div>
+
+<h1>Tijdlijn van de Profeet</h1>
+
+    <div class="timeline">
+        <div class="circle" onclick="location.href='adam.html'"><span>Adam</span></div>
+        <div class="circle" onclick="location.href='noeh.html'"><span>Noeh</span></div>
+        <div class="circle" onclick="location.href='musa.html'"><span>Musa</span></div>
+        <div class="circle empty"><span></span></div>
+        <div class="circle empty"><span></span></div>
+        <div class="circle empty"><span></span></div>
+        <div class="circle empty"><span></span></div>
+        <div class="circle empty"><span></span></div>
+        <div class="circle empty"><span></span></div>
+        <div class="circle empty"><span></span></div>
+    </div>
+    
+</body>
+<script>
+document.getElementById("logoutBtn").addEventListener("click", function() {
+    localStorage.removeItem("token"); // JWT verwijderen
+    alert("U bent uitgelogd!");
+    window.location.href = "login.html"; // terug naar login
+});
+</script>
+<script src="js/dashboard.js"></script>
+</html>
