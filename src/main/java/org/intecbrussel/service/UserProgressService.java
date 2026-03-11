@@ -19,8 +19,20 @@ public class UserProgressService {
     private final UserRepository userRepository;
     private final ProphetRepository prophetRepository;
 
-    public Optional<UserProgress> getProgress(Long userId, Long prophetId) {
-        return userProgressRepository.findByUserIdAndProphetId(userId, prophetId);
+
+    public UserProgress getProgress(Long userId, Long prophetId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        Prophet prophet = prophetRepository.findById(prophetId).orElseThrow();
+
+        return userProgressRepository
+                .findByUserAndProphet(user, prophet)
+                .orElseGet(() -> {
+                    UserProgress newProgress = new UserProgress();
+                    newProgress.setUser(user);
+                    newProgress.setProphet(prophet);
+                    newProgress.setProgressPercentage(0);
+                    return userProgressRepository.save(newProgress);
+                });
     }
 
     public UserProgress saveProgress(UserProgress userProgress) {

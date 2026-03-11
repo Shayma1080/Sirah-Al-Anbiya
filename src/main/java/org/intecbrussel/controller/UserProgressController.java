@@ -25,7 +25,7 @@ public class UserProgressController {
         UserProgress progress =
                 userProgressService.updateProgress(userId, prophetId, progressPercentage);
 
-        return mapToDTO(progress);
+        return UserProgressDTO.mapToDTO(progress);
     }
 
     private UserProgressDTO mapToDTO(UserProgress progress){
@@ -49,10 +49,7 @@ public class UserProgressController {
             @RequestParam Long prophetId){
 
         UserProgress progress =
-                userProgressService.getProgress(userId, prophetId)
-                        .orElseGet(() ->
-                                userProgressService.updateProgress(userId, prophetId, 0)
-                        );
+                userProgressService.getProgress(userId, prophetId);
 
         return UserProgressDTO.mapToDTO(progress);
     }
